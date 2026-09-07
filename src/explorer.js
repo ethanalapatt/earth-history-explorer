@@ -39,10 +39,10 @@ const panel = document.querySelector(".history-panel"),
   search = document.querySelector("#place-search"),
   results = document.querySelector("#place-results");
 const exploreButton = document.createElement("button");
-exploreButton.className = "record-button";
+exploreButton.className = "place-explorer-button";
 exploreButton.id = "explore-places";
 exploreButton.textContent = "Explore places ↗";
-document.querySelector(".hero-actions").append(exploreButton);
+document.querySelector(".header-actions").prepend(exploreButton);
 const resetButton = document.createElement("button");
 resetButton.id = "globe-reset";
 resetButton.setAttribute("aria-label", "Reset globe view");
@@ -85,7 +85,8 @@ function closePanel() {
 document.querySelector(".history-close").onclick = closePanel;
 exploreButton.onclick = () => {
   openPanel();
-  if (!selected) {
+  if (selected) void selectPlace(selected);
+  else {
     content.replaceChildren(
       text(
         "p",

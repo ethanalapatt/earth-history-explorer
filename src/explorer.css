@@ -448,7 +448,7 @@ summary:focus-visible {
   .history-content {
     padding: 16px 20px;
   }
-  .history-open .mobile-experience-panel,
+  .history-open .mobile-panel,
   .history-open .mobile-globe-hint,
   .history-open .time-readout {
     visibility: hidden;
@@ -478,7 +478,7 @@ summary:focus-visible {
   .map-place {
     font-size: 11px;
   }
-  .map-zoomed .mobile-experience-panel[data-state="open"] {
+  .map-zoomed .mobile-panel[data-state="open"] {
     max-height: 45vh;
   }
 }
@@ -488,4 +488,26 @@ summary:focus-visible {
     animation: none;
   }
 }
-.mobile-sources{display:none!important}
+.mobile-sources {
+  display: none !important;
+}
+
+.place-explorer-button {
+  padding: 9px 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: #c9c3b2;
+  white-space: nowrap;
+}
+@media (max-width: 759px) {
+  .place-explorer-button {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+  .history-open .mobile-panel {
+    visibility: hidden;
+  }
+  .history-open .history-panel {
+    visibility: visible;
+  }
+}
