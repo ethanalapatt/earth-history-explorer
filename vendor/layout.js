@@ -1322,8 +1322,14 @@ function to(
         return;
       const c = t.clientX - D.x,
         p = t.clientY - D.y,
-        L = new le().setFromAxisAngle(We, c * 0.0045),
-        x = new le().setFromAxisAngle(at, p * 0.0045);
+        L = new le().setFromAxisAngle(
+          We,
+          c * 0.0045 * Math.max(0.035, 1 - H / 1.2),
+        ),
+        x = new le().setFromAxisAngle(
+          at,
+          p * 0.0045 * Math.max(0.035, 1 - H / 1.2),
+        );
       (G.premultiply(L).premultiply(x), (D = { x: t.clientX, y: t.clientY }));
     }));
   const ze = () => {
@@ -1354,7 +1360,7 @@ function to(
           );
           (m
             ? (F = T.clamp((F * J) / c, 3.6, 80))
-            : (Y = T.clamp(Y + (c - J) * 0.003, 0, 1)),
+            : (Y = T.clamp(Y + (c - J) * 0.003, 0, 1.16)),
             (J = c),
             (D = null));
         }
@@ -1408,9 +1414,16 @@ function to(
               : 1.95
             : 0;
     if (
-      ((l.position.x += (L - l.position.x) * (1 - Math.exp(-c * 2))),
+      ((l.position.x +=
+        (L * (1 - T.smoothstep(H, 0.5, 1)) - l.position.x) *
+        (1 - Math.exp(-c * 2))),
       (l.position.y +=
-        ((m ? (p ? 1.1 : 0.4) : i && p ? 1.25 : ne && p ? 0.88 : 0.13) -
+        ((m
+          ? p
+            ? 1.1
+            : 0.4
+          : (i && p ? 1.25 : ne && p ? 0.88 : 0.13) *
+            (1 - T.smoothstep(H, 0.5, 1))) -
           l.position.y) *
         (1 - Math.exp(-c * 2))),
       (s.position.z = 10.5 - H * 6.65),
@@ -1439,10 +1452,13 @@ function to(
       (K.material.opacity +=
         (we ? W - K.material.opacity : -K.material.opacity) * 0.07),
       me.position.copy(l.position),
-      (me.material.opacity = m ? 0 : (1 - H) * 0.1),
+      (me.material.opacity = m ? 0 : Math.max(0, 1 - H) * 0.1),
       !g)
     ) {
-      const x = Bt(s, { zoom: H, orbitalDistance: m ? pe : null });
+      const x =
+        H > 0.7
+          ? (s.clearViewOffset(), null)
+          : Bt(s, { zoom: H, orbitalDistance: m ? pe : null });
       x !== null &&
         ((l.position.x = 0),
         (l.position.y = 0),
@@ -1569,9 +1585,21 @@ function to(
       },
       setHistory: ot,
       attachLayer(t) {
-        const layer = t({scene: h, group: l, camera: s, renderer: u, radius: B, geographic: Xt});
+        const layer = t({
+          scene: h,
+          group: l,
+          camera: s,
+          renderer: u,
+          radius: B,
+          geographic: Xt,
+        });
         const previous = C;
-        C = { update(time, delta) { previous?.update?.(time, delta); layer.update?.(time, delta); } };
+        C = {
+          update(time, delta) {
+            previous?.update?.(time, delta);
+            layer.update?.(time, delta);
+          },
+        };
         return layer;
       },
       setCityLights(t) {
@@ -1613,7 +1641,7 @@ function to(
             from: l.quaternion.clone(),
             to: se(t, c),
             fromZoom: H,
-            zoom: Math.min(p, innerWidth < 760 ? 0.28 : 0.66),
+            zoom: T.clamp(p, 0, 1.16),
             start: performance.now(),
             duration: R ? 200 : L,
           }));
@@ -1623,7 +1651,7 @@ function to(
           F = T.clamp(F * Math.exp(-t * 3), 3.6, 80);
           return;
         }
-        Y = T.clamp(Y + t, 0, 1);
+        Y = T.clamp(Y + t, 0, 1.16);
       },
       setLight(t) {
         const c = ((t - 12) / 12) * Math.PI;

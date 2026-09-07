@@ -1,4 +1,4 @@
-@import "./fonts.css";400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap";
+@import "./fonts.css";
 @media (max-width: 760px) {
   body .world-shell.mobile-observatory {
     --mobile-peek: 260px;
