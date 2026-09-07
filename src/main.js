@@ -10,6 +10,13 @@ try {
   ])
     document.querySelector(selector)?.remove();
   await import("./explorer.js");
+  const inspiration = document.createElement("a");
+  inspiration.className = "inspiration-credit";
+  inspiration.href = "https://earth.ethanplus.ai/civilization.html";
+  inspiration.target = "_blank";
+  inspiration.rel = "noopener noreferrer";
+  inspiration.textContent = "Inspired by earth.ethanplus.ai ↗";
+  document.querySelector(".world-shell").append(inspiration);
 } catch (error) {
   console.error("Earth could not initialize:", error);
   const fallback = document.createElement("main");

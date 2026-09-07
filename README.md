@@ -56,7 +56,7 @@ The other Earth experiences in the navigation link to the existing live site. Th
 - `server/history.js` resolves places and returns plain-text history sections. Upstream HTML is never inserted into the interface.
 - `public/` contains all map assets and the local gazetteer.
 
-No API keys, database, account system, analytics, or paid map service is needed. No promotional credits or credits panel are shown in the interface. Dependency and content licensing details are retained in `THIRD_PARTY_NOTICES.md`.
+No API keys, database, account system, analytics, or paid map service is needed. A small footer link credits the reference website as the inspiration. Dependency and content licensing details are retained in `THIRD_PARTY_NOTICES.md`.
 
 ## Checks
 

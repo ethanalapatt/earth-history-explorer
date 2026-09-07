@@ -511,3 +511,32 @@ summary:focus-visible {
     visibility: visible;
   }
 }
+
+.inspiration-credit {
+  position: fixed;
+  right: 4.5%;
+  bottom: 7px;
+  z-index: 15;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #030609d9;
+  color: #a6b6bd;
+  font:
+    400 12px/1.5 "DM Sans",
+    sans-serif;
+  text-decoration: none;
+}
+.inspiration-credit:hover {
+  color: #e6d8bd;
+  text-decoration: underline;
+}
+@media (max-width: 759px) {
+  .inspiration-credit {
+    right: 12px;
+    bottom: max(6px, env(safe-area-inset-bottom));
+    z-index: 61;
+  }
+  .history-panel {
+    bottom: calc(38px + env(safe-area-inset-bottom));
+  }
+}
